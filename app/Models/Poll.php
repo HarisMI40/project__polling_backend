@@ -9,6 +9,7 @@ use App\Models\User;
 class Poll extends Model
 {
     use HasFactory;
+    public $keyType = 'string';
     protected $fillable = [
         'user_id',
         'title',
