@@ -16,7 +16,7 @@ class PollController extends Controller
 
     public function show($id)
     {
-        $poll = Poll::with('choices', 'choices.votes')->where('id',"$id")->first();
+        $poll = Poll::with('choices', 'choices.votes')->where('id',(int)$id)->first();
 
         //cek apakah user_id ini sudah vote
         if (!$poll) return response()->json(['success' => false, 'message' => "Data tidak ada"], 400);
