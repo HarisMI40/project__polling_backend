@@ -10,7 +10,8 @@ use App\Models\Choice;
 class PollController extends Controller
 {
     public function index()
-    {
+    {   
+        
         return Poll::with('user')->get();
     }
 
@@ -21,7 +22,7 @@ class PollController extends Controller
         //cek apakah user_id ini sudah vote
         if (!$poll) return response()->json(['success' => false, 'message' => "Data tidak ada"], 400);
 
-        return response()->json(['status' => 'success', 'data' => $poll], 200);
+        return response()->json(['status' => 'success', 'data' => $poll , 'ip' => request()->ip()], 200);
     }
 
     public function store(Request $request)
