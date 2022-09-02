@@ -33,7 +33,7 @@ class VoteController extends Controller
         if(!$choice or !$vote) return response()->json(['success' => false,'message' => "Vote tidak berhasil dikirim"], 400);
         
         
-        $poll = Poll::with('choices')->where('id', $request->id_poll)->first();
+        $poll = Poll::with('choices')->where('uuid', $request->id_poll)->first();
         return response()->json(['status' => 'success', 'data' => $poll], 200);
     }
 }

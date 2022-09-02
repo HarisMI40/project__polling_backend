@@ -12,6 +12,7 @@ class Poll extends Model
     public $keyType = 'string';
     protected $fillable = [
         // 'user_id',
+        'uuid',
         'ip_address',
         'title',
         'description',
@@ -23,12 +24,12 @@ class Poll extends Model
     {
         //dari kolom table sendiri, kolom table yang direlasikan
         // return $this->hasMany(Choice::class, 'id', 'id_poll');
-        return $this->hasMany(Choice::class, 'id_poll', 'id');
+        return $this->hasMany(Choice::class, 'id_poll', 'uuid');
     }
 
 
     public function user(){
         //dari kolom table sendiri, kolom table yang direlasikan
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'uuid');
     }
 }

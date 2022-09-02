@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Poll;
 use App\Models\Choice;
-
+use Illuminate\Support\Str;
 class PollController extends Controller
 {
     public function index()
@@ -17,7 +17,7 @@ class PollController extends Controller
 
     public function show($id)
     {
-        $poll = Poll::with('choices', 'choices.votes')->where('id',(int)$id)->first();
+        $poll = Poll::with('choices', 'choices.votes')->where('uuid',(int)$id)->first();
 
         //cek apakah user_id ini sudah vote
         if (!$poll) return response()->json(['success' => false, 'message' => "Data tidak ada"], 400);
@@ -38,6 +38,7 @@ class PollController extends Controller
         $choicess = explode("\r\n", $request->choices);
 
         $poll = Poll::create([
+            'uuid' => Str::uuid(),
             'ip_address' => request()->ip(),
             'title' => $request->title,
             'description' => $request->description,
@@ -53,7 +54,7 @@ class PollController extends Controller
 
         foreach ($choicess as $value) {
             Choice::create([
-                'id_poll' => $poll->id,
+                'id_poll' => $poll->uuid,
                 'choice' => $value
             ]);
         }

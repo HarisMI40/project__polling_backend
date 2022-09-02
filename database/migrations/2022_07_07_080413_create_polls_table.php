@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('polls', function (Blueprint $table) {
-            $table->id();
+            $table->uuid();
             $table->ipAddress('ip_address');
             $table->string('title');
             $table->string('description');

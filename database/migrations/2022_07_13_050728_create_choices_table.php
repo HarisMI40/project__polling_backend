@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('choices', function (Blueprint $table) {
             $table->id();
             $table->string("choice");
-            $table->string('id_poll');
+            $table->uuid('id_poll');
             $table->timestamps();
         });
     }
