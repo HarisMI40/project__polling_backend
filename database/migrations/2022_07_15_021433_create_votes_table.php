@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->ipAddress('ip_address');
             $table->integer('choice_id');
             $table->timestamps();
         });

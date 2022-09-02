@@ -11,7 +11,8 @@ class Poll extends Model
     use HasFactory;
     public $keyType = 'string';
     protected $fillable = [
-        'user_id',
+        // 'user_id',
+        'ip_address',
         'title',
         'description',
         'deadline',

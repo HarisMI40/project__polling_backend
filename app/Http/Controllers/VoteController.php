@@ -14,8 +14,7 @@ class VoteController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'id_vote' => 'required',
-            'id_poll' => 'required',
-            'user_vote' => 'required'
+            'id_poll' => 'required'
         ]);
 
         if($validator->fails()){
@@ -27,7 +26,7 @@ class VoteController extends Controller
         $choice->save();
 
         $vote = Vote::create([
-            'user_id' => $request->user_vote,
+            'ip_address' => $request->getClientIp(),
             'choice_id'=> $choice->id
         ]);
 

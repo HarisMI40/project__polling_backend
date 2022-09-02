@@ -22,7 +22,7 @@ class PollController extends Controller
         //cek apakah user_id ini sudah vote
         if (!$poll) return response()->json(['success' => false, 'message' => "Data tidak ada"], 400);
 
-        return response()->json(['status' => 'success', 'data' => $poll , 'ip' => request()->ip()], 200);
+        return response()->json(['status' => 'success', 'user_ip' => request()->ip(), 'data' => $poll ], 200);
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class PollController extends Controller
         $choicess = explode("\r\n", $request->choices);
 
         $poll = Poll::create([
-            'user_id' => $request->user_id,
+            'ip_address' => request()->ip(),
             'title' => $request->title,
             'description' => $request->description,
             'deadline' => $request->deadline
@@ -62,6 +62,7 @@ class PollController extends Controller
         return response()->json([
             'success' => true,
             'message' => "data berhasil disimpan",
+            // 'data' => $request->choices
             'id_polling' => $poll->id
         ], 201);
     }
