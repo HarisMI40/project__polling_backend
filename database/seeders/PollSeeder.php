@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Str;
 class PollSeeder extends Seeder
 {
     /**
@@ -15,7 +15,8 @@ class PollSeeder extends Seeder
     public function run()
     {
         \App\Models\Poll::Create([
-            'user_id' => 1,
+            'uuid' => Str::uuid(),
+            'ip_address' => '192.168.3422',
             'title' => "Xiaomi Redmi 10 atau Infinix ? ",
             'description' => "Kaum Mendang Mending coba kumpul",
             'deadline' => '2022-12-05'

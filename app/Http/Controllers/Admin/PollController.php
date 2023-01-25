@@ -64,7 +64,7 @@ class PollController extends Controller
             'success' => true,
             'message' => "data berhasil disimpan",
             // 'data' => $request->choices
-            'id_polling' => $poll->id
+            'id_polling' => $poll->uuid
         ], 201);
     }
 
